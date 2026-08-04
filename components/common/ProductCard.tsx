@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { LucideIcon, ArrowRight, Clock } from "lucide-react";
 import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/common/ButtonLink";
 import { cn } from "@/lib/utils";
 import { events } from "@/lib/analytics";
 
@@ -29,7 +29,7 @@ const colorMap = {
     badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
     border: "border-brand-orange/20 hover:border-brand-orange/40",
     dot: "bg-brand-orange",
-    btnClass: "bg-brand-orange hover:bg-brand-orange/90 text-white shadow-lg shadow-orange-200",
+    btnClass: "bg-brand-orange hover:bg-brand-orange/90 text-white shadow-lg shadow-orange-200 flex items-center justify-center gap-2",
     audience: "bg-orange-50 text-brand-orange",
   },
   green: {
@@ -38,7 +38,7 @@ const colorMap = {
     badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
     border: "border-brand-green/20 hover:border-brand-green/40",
     dot: "bg-brand-green",
-    btnClass: "bg-brand-petrol hover:bg-brand-petrol/90 text-white",
+    btnClass: "bg-brand-petrol hover:bg-brand-petrol/90 text-white flex items-center justify-center gap-2",
     audience: "bg-green-50 text-green-700",
   },
   earth: {
@@ -47,7 +47,7 @@ const colorMap = {
     badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
     border: "border-amber-300/30 hover:border-amber-300/50",
     dot: "bg-amber-600",
-    btnClass: "bg-amber-600 hover:bg-amber-700 text-white",
+    btnClass: "bg-amber-600 hover:bg-amber-700 text-white flex items-center justify-center gap-2",
     audience: "bg-amber-50 text-amber-700",
   },
 };
@@ -80,14 +80,8 @@ export function ProductCard({
         comingSoon ? "opacity-80" : "hover:shadow-xl"
       )}
     >
-      {/* Badge */}
       {(badge || comingSoon) && (
-        <span
-          className={cn(
-            "absolute top-6 right-6 text-xs font-semibold px-2.5 py-1 rounded-full border flex items-center gap-1",
-            comingSoon ? c.badgeSoon : c.badge
-          )}
-        >
+        <span className={cn("absolute top-6 right-6 text-xs font-semibold px-2.5 py-1 rounded-full border flex items-center gap-1", comingSoon ? c.badgeSoon : c.badge)}>
           {comingSoon && <Clock className="h-3 w-3" />}
           {comingSoon ? "Em breve" : badge}
         </span>
@@ -126,20 +120,16 @@ export function ProductCard({
           </div>
         ) : (
           <>
-            <Button
-              render={
-                <Link
-                  href={primaryCta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => events.clickProductCard(name)}
-                />
-              }
-              className={cn("w-full rounded-xl h-11 font-semibold", c.btnClass)}
+            <ButtonLink
+              href={primaryCta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn("w-full h-11 rounded-xl font-semibold", c.btnClass)}
+              onClick={() => events.clickProductCard(name)}
             >
               {primaryCta.label}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+              <ArrowRight className="h-4 w-4" />
+            </ButtonLink>
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}

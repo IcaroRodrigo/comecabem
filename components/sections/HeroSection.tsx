@@ -1,35 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, MessageCircle, Check, TrendingUp, Package } from "lucide-react";
 import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { SectionWrapper } from "@/components/common/SectionWrapper";
+import { ButtonLink } from "@/components/common/ButtonLink";
 import { URLS, WHATSAPP_MESSAGE } from "@/lib/constants";
 import { events } from "@/lib/analytics";
 
 const floatingCards = [
-  {
-    icon: Check,
-    text: "Venda concluída",
-    value: "+ R$ 89,90",
-    color: "text-brand-green",
-    bg: "bg-green-50",
-  },
-  {
-    icon: Package,
-    text: "Estoque atualizado",
-    value: "47 itens",
-    color: "text-brand-orange",
-    bg: "bg-orange-50",
-  },
-  {
-    icon: TrendingUp,
-    text: "Crescimento",
-    value: "↑ 23% este mês",
-    color: "text-brand-petrol",
-    bg: "bg-brand-petrol-light",
-  },
+  { icon: Check, text: "Venda concluída", value: "+ R$ 89,90", color: "text-brand-green", bg: "bg-green-50" },
+  { icon: Package, text: "Estoque atualizado", value: "47 itens", color: "text-brand-orange", bg: "bg-orange-50" },
+  { icon: TrendingUp, text: "Crescimento", value: "↑ 23% este mês", color: "text-brand-petrol", bg: "bg-brand-petrol-light" },
 ];
 
 const MockScreen = () => (
@@ -49,32 +29,19 @@ const MockScreen = () => (
         <div className="bg-white rounded-xl p-4 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-brand-petrol">Começa Bem Gestão</span>
-            <span className="text-[10px] text-brand-gray bg-brand-cream px-2 py-0.5 rounded-full">
-              Hoje
-            </span>
+            <span className="text-[10px] text-brand-gray bg-brand-cream px-2 py-0.5 rounded-full">Hoje</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
-            {[
-              { label: "Vendas", value: "R$ 1.240" },
-              { label: "Pedidos", value: "18" },
-              { label: "Clientes", value: "12" },
-            ].map((stat) => (
-              <div key={stat.label} className="bg-brand-cream rounded-lg p-2 text-center">
-                <p className="text-[10px] text-brand-gray">{stat.label}</p>
-                <p className="text-xs font-bold text-brand-graphite">{stat.value}</p>
+            {[{ label: "Vendas", value: "R$ 1.240" }, { label: "Pedidos", value: "18" }, { label: "Clientes", value: "12" }].map((s) => (
+              <div key={s.label} className="bg-brand-cream rounded-lg p-2 text-center">
+                <p className="text-[10px] text-brand-gray">{s.label}</p>
+                <p className="text-xs font-bold text-brand-graphite">{s.value}</p>
               </div>
             ))}
           </div>
           <div className="flex items-end gap-1 h-14 px-1">
             {[30, 55, 40, 70, 45, 80, 65].map((h, i) => (
-              <div
-                key={i}
-                className="flex-1 rounded-t-sm"
-                style={{
-                  height: `${h}%`,
-                  background: i === 5 ? "#F97316" : "#E8F4F7",
-                }}
-              />
+              <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%`, background: i === 5 ? "#F97316" : "#E8F4F7" }} />
             ))}
           </div>
           <div className="flex items-center gap-2 text-[10px] text-brand-gray">
@@ -92,11 +59,7 @@ const MockScreen = () => (
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
         className={`absolute z-20 bg-white rounded-xl shadow-lg border border-border px-3 py-2 flex items-center gap-2 ${
-          i === 0
-            ? "-top-4 -right-4 lg:-right-8"
-            : i === 1
-            ? "bottom-8 -left-4 lg:-left-8"
-            : "-bottom-4 right-4 lg:right-0"
+          i === 0 ? "-top-4 -right-4 lg:-right-8" : i === 1 ? "bottom-8 -left-4 lg:-left-8" : "-bottom-4 right-4 lg:right-0"
         }`}
       >
         <span className={`p-1.5 rounded-lg ${card.bg}`}>
@@ -114,29 +77,17 @@ const MockScreen = () => (
 export function HeroSection() {
   return (
     <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-brand-cream">
-      {/* Decorative background */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
-        {/* Subtle dot grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: "radial-gradient(#0F4C5C 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
+        <div className="absolute inset-0 opacity-[0.035]"
+          style={{ backgroundImage: "radial-gradient(#0F4C5C 1px, transparent 1px)", backgroundSize: "28px 28px" }}
         />
-        {/* Blurred color blobs */}
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-orange-200 opacity-20 blur-3xl" />
         <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full bg-brand-petrol opacity-10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-brand-green opacity-5 blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
               Feito para pequenos negócios brasileiros
@@ -148,49 +99,41 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg text-brand-gray leading-relaxed mb-8 max-w-lg">
-              Soluções simples para organizar vendas, estoque, clientes e processos do
-              seu negócio — sem complicação, sem palavras difíceis.
+              Soluções simples para organizar vendas, estoque, clientes e processos do seu negócio — sem complicação, sem palavras difíceis.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <Button
-                render={
-                  <Link href="#produtos" onClick={() => events.clickKnowSolutions()} />
-                }
+              <ButtonLink
+                href="#produtos"
                 size="lg"
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-7 shadow-lg shadow-orange-200"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-7 shadow-lg shadow-orange-200 flex items-center justify-center gap-2"
+                onClick={() => events.clickKnowSolutions()}
               >
                 Conheça nossas soluções
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+                <ArrowRight className="h-4 w-4" />
+              </ButtonLink>
 
-              <Button
-                render={
-                  <Link
-                    href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => events.clickWhatsapp()}
-                  />
-                }
+              <ButtonLink
+                href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 size="lg"
                 variant="outline"
-                className="border-brand-petrol text-brand-petrol hover:bg-brand-petrol-light font-semibold rounded-xl px-7"
+                className="border-brand-petrol text-brand-petrol hover:bg-brand-petrol-light font-semibold rounded-xl px-7 flex items-center justify-center gap-2"
+                onClick={() => events.clickWhatsapp()}
               >
-                <MessageCircle className="mr-2 h-4 w-4" />
+                <MessageCircle className="h-4 w-4" />
                 Fale pelo WhatsApp
-              </Button>
+              </ButtonLink>
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-brand-gray">
-              {["Sem cartão de crédito", "Grátis para testar", "Suporte em português"].map(
-                (item) => (
-                  <span key={item} className="flex items-center gap-1.5">
-                    <Check className="h-3.5 w-3.5 text-brand-green" />
-                    {item}
-                  </span>
-                )
-              )}
+              {["Sem cartão de crédito", "Grátis para testar", "Suporte em português"].map((item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <Check className="h-3.5 w-3.5 text-brand-green" />
+                  {item}
+                </span>
+              ))}
             </div>
           </motion.div>
 

@@ -6,31 +6,28 @@ interface LogoProps {
 }
 
 function IconMark({ isWhite }: { isWhite: boolean }) {
+  const petrol = isWhite ? "#ffffff" : "#0F4C5C";
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 52 52"
+      viewBox="0 0 48 48"
       className="h-9 w-9 flex-shrink-0"
       aria-hidden
     >
-      {/* Arco externo do C */}
+      {/* C shape — arco com stroke espesso, abertura à direita */}
       <path
-        d="M26 2 A24 24 0 1 0 26 50 L26 41 A15 15 0 1 1 26 11 Z"
-        fill="#F97316"
-      />
-      {/* Seta de crescimento */}
-      <polyline
-        points="30,7 40,1 40,16"
+        d="M38 14 A18 18 0 1 0 38 34"
         fill="none"
-        stroke={isWhite ? "#ffffff" : "#0F4C5C"}
-        strokeWidth="3"
+        stroke="#F97316"
+        strokeWidth="9"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      {/* Barra esquerda */}
-      <rect x="17" y="30" width="6" height="12" fill={isWhite ? "#ffffff" : "#0F4C5C"} rx="1.5" />
-      {/* Barra direita */}
-      <rect x="25" y="24" width="6" height="18" fill="#22C55E" rx="1.5" />
+      {/* Seta apontando para cima-direita */}
+      <line x1="38" y1="14" x2="44" y2="8"  stroke={petrol} strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="38" y1="14" x2="44" y2="20" stroke={petrol} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Barras do gráfico */}
+      <rect x="17" y="29" width="5" height="9"  fill={petrol}    rx="1.5" />
+      <rect x="24" y="23" width="5" height="15" fill="#22C55E"   rx="1.5" />
     </svg>
   );
 }
@@ -39,7 +36,7 @@ export function Logo({ variant = "default", className }: LogoProps) {
   const isWhite = variant === "white";
 
   return (
-    <div className={cn("flex items-center gap-2", className)} aria-label="Começa Bem">
+    <div className={cn("flex items-center gap-2.5", className)} aria-label="Começa Bem">
       <IconMark isWhite={isWhite} />
       <div className="flex flex-col leading-none gap-0.5">
         <span
@@ -48,7 +45,7 @@ export function Logo({ variant = "default", className }: LogoProps) {
         >
           começa
         </span>
-        <span className="text-[19px] font-extrabold tracking-tight text-brand-orange">
+        <span className="text-[20px] font-extrabold tracking-tight text-brand-orange leading-none">
           bem
         </span>
       </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, ShoppingCart, Wheat, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/common/ButtonLink";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { URLS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ const products = [
 ];
 
 const navLinks = [
-  { label: "Para quem é", href: "#produtos" },
+  { label: "Para quem é", href: "#para-quem-e" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Sobre", href: "#manifesto" },
 ];
@@ -40,14 +40,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full bg-brand-cream/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-6">
-          {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Logo />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {/* Products dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setProductsOpen(true)}
@@ -58,9 +56,7 @@ export function Header() {
                 onClick={() => setProductsOpen((v) => !v)}
               >
                 Produtos
-                <ChevronDown
-                  className={cn("h-4 w-4 transition-transform", productsOpen && "rotate-180")}
-                />
+                <ChevronDown className={cn("h-4 w-4 transition-transform", productsOpen && "rotate-180")} />
               </button>
 
               {productsOpen && (
@@ -75,18 +71,11 @@ export function Header() {
                         className="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-cream transition-colors group"
                         onClick={() => setProductsOpen(false)}
                       >
-                        <span
-                          className={cn(
-                            "mt-0.5 p-1.5 rounded-lg bg-brand-cream group-hover:bg-white transition-colors",
-                            p.color
-                          )}
-                        >
+                        <span className={cn("mt-0.5 p-1.5 rounded-lg bg-brand-cream group-hover:bg-white transition-colors", p.color)}>
                           <p.icon className="h-4 w-4" />
                         </span>
                         <span>
-                          <span className="block text-sm font-semibold text-brand-graphite">
-                            {p.name}
-                          </span>
+                          <span className="block text-sm font-semibold text-brand-graphite">{p.name}</span>
                           <span className="block text-xs text-brand-gray">{p.description}</span>
                         </span>
                       </Link>
@@ -107,21 +96,19 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button
-              render={<Link href="#produtos" />}
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-5 h-9"
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center">
+            <ButtonLink
+              href="#produtos"
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-5 h-9 text-sm"
             >
               Conhecer as soluções
-            </Button>
+            </ButtonLink>
           </div>
 
           {/* Mobile menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger
-              className="lg:hidden p-2 rounded-lg hover:bg-brand-beige transition-colors"
-            >
+            <SheetTrigger className="lg:hidden p-2 rounded-lg hover:bg-brand-beige transition-colors">
               {mobileOpen ? (
                 <X className="h-5 w-5 text-brand-graphite" />
               ) : (
@@ -161,13 +148,14 @@ export function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="mt-6 px-4 space-y-3">
-                <Button
-                  render={<Link href="#produtos" onClick={() => setMobileOpen(false)} />}
-                  className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl h-11"
+              <div className="mt-6 px-4">
+                <ButtonLink
+                  href="#produtos"
+                  className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl h-11 flex items-center justify-center"
+                  onClick={() => setMobileOpen(false)}
                 >
                   Conhecer as soluções
-                </Button>
+                </ButtonLink>
               </div>
             </SheetContent>
           </Sheet>

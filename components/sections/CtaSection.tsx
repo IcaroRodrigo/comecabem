@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/common/ButtonLink";
 import { URLS, WHATSAPP_MESSAGE } from "@/lib/constants";
 import { events } from "@/lib/analytics";
 
@@ -23,38 +22,32 @@ export function CtaSection() {
             <span className="text-brand-orange">um dia esteve começando.</span>
           </h2>
           <p className="text-lg text-brand-gray max-w-xl mx-auto mb-10">
-            Encontre a solução ideal para organizar sua empresa desde o primeiro dia.
-            Simples, rápido e feito para você.
+            Encontre a solução ideal para organizar sua empresa desde o primeiro dia. Simples, rápido e feito para você.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              render={
-                <Link href="#produtos" onClick={() => events.clickKnowSolutions()} />
-              }
+            <ButtonLink
+              href="#produtos"
               size="lg"
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-8 shadow-xl shadow-orange-200"
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-8 shadow-xl shadow-orange-200 flex items-center justify-center gap-2"
+              onClick={() => events.clickKnowSolutions()}
             >
               Conhecer os produtos
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+              <ArrowRight className="h-5 w-5" />
+            </ButtonLink>
 
-            <Button
-              render={
-                <Link
-                  href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => events.clickWhatsapp()}
-                />
-              }
+            <ButtonLink
+              href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
+              target="_blank"
+              rel="noopener noreferrer"
               size="lg"
               variant="outline"
-              className="border-2 border-brand-petrol text-brand-petrol hover:bg-brand-petrol hover:text-white font-semibold rounded-xl px-8 transition-colors"
+              className="border-2 border-brand-petrol text-brand-petrol hover:bg-brand-petrol hover:text-white font-semibold rounded-xl px-8 transition-colors flex items-center justify-center gap-2"
+              onClick={() => events.clickWhatsapp()}
             >
-              <MessageCircle className="mr-2 h-5 w-5" />
+              <MessageCircle className="h-5 w-5" />
               Conversar pelo WhatsApp
-            </Button>
+            </ButtonLink>
           </div>
 
           <p className="mt-8 text-sm text-brand-gray">
