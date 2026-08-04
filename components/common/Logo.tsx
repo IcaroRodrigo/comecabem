@@ -5,62 +5,53 @@ interface LogoProps {
   className?: string;
 }
 
-export function Logo({ variant = "default", className }: LogoProps) {
-  const isWhite = variant === "white";
-  const textColor = isWhite ? "#ffffff" : "#0F4C5C";
-
+function IconMark({ isWhite }: { isWhite: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 195 64"
-      className={cn("h-10 w-auto overflow-visible", className)}
-      aria-label="Começa Bem"
+      viewBox="0 0 52 52"
+      className="h-9 w-9 flex-shrink-0"
+      aria-hidden
     >
-      {/* ── Ícone "C" com gráfico de barras ── */}
-      <g transform="translate(6, 6)">
-        {/* Arco externo do C */}
-        <path
-          d="M24 2 A22 22 0 1 0 24 46 L24 38 A14 14 0 1 1 24 10 Z"
-          fill="#F97316"
-        />
-        {/* Seta de crescimento */}
-        <polyline
-          points="28,6 36,0 36,14"
-          fill="none"
-          stroke={textColor}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* Barra menor (esquerda) */}
-        <rect x="16" y="28" width="5" height="10" fill={textColor} rx="1" />
-        {/* Barra maior (direita) */}
-        <rect x="23" y="22" width="5" height="16" fill="#22C55E" rx="1" />
-      </g>
-
-      {/* ── Texto "começa" ── */}
-      <text
-        x="60"
-        y="27"
-        fontFamily="Manrope, system-ui, sans-serif"
-        fontWeight="700"
-        fontSize="17"
-        fill={textColor}
-      >
-        começa
-      </text>
-
-      {/* ── Texto "bem" ── */}
-      <text
-        x="60"
-        y="50"
-        fontFamily="Manrope, system-ui, sans-serif"
-        fontWeight="800"
-        fontSize="22"
+      {/* Arco externo do C */}
+      <path
+        d="M26 2 A24 24 0 1 0 26 50 L26 41 A15 15 0 1 1 26 11 Z"
         fill="#F97316"
-      >
-        bem
-      </text>
+      />
+      {/* Seta de crescimento */}
+      <polyline
+        points="30,7 40,1 40,16"
+        fill="none"
+        stroke={isWhite ? "#ffffff" : "#0F4C5C"}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Barra esquerda */}
+      <rect x="17" y="30" width="6" height="12" fill={isWhite ? "#ffffff" : "#0F4C5C"} rx="1.5" />
+      {/* Barra direita */}
+      <rect x="25" y="24" width="6" height="18" fill="#22C55E" rx="1.5" />
     </svg>
+  );
+}
+
+export function Logo({ variant = "default", className }: LogoProps) {
+  const isWhite = variant === "white";
+
+  return (
+    <div className={cn("flex items-center gap-2", className)} aria-label="Começa Bem">
+      <IconMark isWhite={isWhite} />
+      <div className="flex flex-col leading-none gap-0.5">
+        <span
+          className="text-[15px] font-bold tracking-tight"
+          style={{ color: isWhite ? "#ffffff" : "#0F4C5C" }}
+        >
+          começa
+        </span>
+        <span className="text-[19px] font-extrabold tracking-tight text-brand-orange">
+          bem
+        </span>
+      </div>
+    </div>
   );
 }
