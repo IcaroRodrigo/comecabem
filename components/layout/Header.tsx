@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ShoppingCart, Wheat, ChevronDown, LogIn } from "lucide-react";
+import { Menu, X, ShoppingCart, Wheat, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -109,15 +109,6 @@ export function Header() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href={URLS.gestao}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-brand-petrol hover:text-brand-orange transition-colors"
-            >
-              <LogIn className="h-4 w-4" />
-              Entrar
-            </Link>
             <Button
               render={<Link href="#produtos" />}
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-5 h-9"
@@ -177,15 +168,6 @@ export function Header() {
                 >
                   Conhecer as soluções
                 </Button>
-                <Link
-                  href={URLS.gestao}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 w-full h-11 rounded-xl border-2 border-brand-petrol text-brand-petrol text-sm font-semibold hover:bg-brand-petrol-light transition-colors"
-                >
-                  <LogIn className="h-4 w-4" />
-                  Entrar
-                </Link>
               </div>
             </SheetContent>
           </Sheet>

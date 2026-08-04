@@ -34,7 +34,7 @@ const products = [
       "Feito para quem trabalha com produtos a granel, naturais e orgânicos. Controle completo de lotes, validade, peso e etiquetas.",
     audience: "Empórios · Lojas naturais · Produtos a granel",
     features: [
-      "Venda por peso e medida",
+      "Venda por peso ou unidade",
       "Controle de lotes e validade",
       "Etiquetas personalizadas",
       "Gestão de fornecedores",
