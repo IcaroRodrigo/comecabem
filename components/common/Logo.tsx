@@ -7,47 +7,54 @@ interface LogoProps {
 
 export function Logo({ variant = "default", className }: LogoProps) {
   const isWhite = variant === "white";
+  const textColor = isWhite ? "#ffffff" : "#0F4C5C";
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 60"
-      className={cn("h-10 w-auto", className)}
+      viewBox="0 0 195 64"
+      className={cn("h-10 w-auto overflow-visible", className)}
       aria-label="Começa Bem"
     >
-      {/* C icon */}
-      <g transform="translate(4, 4)">
+      {/* ── Ícone "C" com gráfico de barras ── */}
+      <g transform="translate(6, 6)">
+        {/* Arco externo do C */}
         <path
-          d="M26 4 A22 22 0 1 0 26 48 L26 40 A14 14 0 1 1 26 12 Z"
+          d="M24 2 A22 22 0 1 0 24 46 L24 38 A14 14 0 1 1 24 10 Z"
           fill="#F97316"
         />
+        {/* Seta de crescimento */}
         <polyline
-          points="30,8 38,2 38,16"
+          points="28,6 36,0 36,14"
           fill="none"
-          stroke={isWhite ? "#ffffff" : "#0F4C5C"}
-          strokeWidth="3"
+          stroke={textColor}
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* chart bars */}
-        <rect x="18" y="28" width="5" height="10" fill={isWhite ? "#ffffff" : "#0F4C5C"} rx="1" />
-        <rect x="25" y="22" width="5" height="16" fill="#22C55E" rx="1" />
+        {/* Barra menor (esquerda) */}
+        <rect x="16" y="28" width="5" height="10" fill={textColor} rx="1" />
+        {/* Barra maior (direita) */}
+        <rect x="23" y="22" width="5" height="16" fill="#22C55E" rx="1" />
       </g>
-      {/* "começa" text */}
+
+      {/* ── Texto "começa" ── */}
       <text
-        x="62"
-        y="28"
-        fontFamily="Manrope, sans-serif"
+        x="60"
+        y="27"
+        fontFamily="Manrope, system-ui, sans-serif"
         fontWeight="700"
-        fontSize="18"
-        fill={isWhite ? "#ffffff" : "#0F4C5C"}
+        fontSize="17"
+        fill={textColor}
       >
         começa
       </text>
-      {/* "bem" text */}
+
+      {/* ── Texto "bem" ── */}
       <text
-        x="62"
-        y="48"
-        fontFamily="Manrope, sans-serif"
+        x="60"
+        y="50"
+        fontFamily="Manrope, system-ui, sans-serif"
         fontWeight="800"
         fontSize="22"
         fill="#F97316"
