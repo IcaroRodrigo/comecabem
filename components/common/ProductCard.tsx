@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LucideIcon, ArrowRight } from "lucide-react";
+import { LucideIcon, ArrowRight, Clock } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,8 +14,9 @@ interface ProductCardProps {
   audience: string;
   features: string[];
   icon: LucideIcon;
-  accentColor: "orange" | "green";
+  accentColor: "orange" | "green" | "earth";
   badge?: string;
+  comingSoon?: boolean;
   primaryCta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   index?: number;
@@ -25,6 +26,7 @@ const colorMap = {
   orange: {
     icon: "bg-orange-100 text-brand-orange",
     badge: "bg-orange-100 text-brand-orange border-orange-200",
+    badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
     border: "border-brand-orange/20 hover:border-brand-orange/40",
     dot: "bg-brand-orange",
     btnClass: "bg-brand-orange hover:bg-brand-orange/90 text-white shadow-lg shadow-orange-200",
@@ -33,10 +35,20 @@ const colorMap = {
   green: {
     icon: "bg-green-100 text-brand-green",
     badge: "bg-green-100 text-green-700 border-green-200",
+    badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
     border: "border-brand-green/20 hover:border-brand-green/40",
     dot: "bg-brand-green",
     btnClass: "bg-brand-petrol hover:bg-brand-petrol/90 text-white",
     audience: "bg-green-50 text-green-700",
+  },
+  earth: {
+    icon: "bg-amber-100 text-amber-700",
+    badge: "bg-amber-100 text-amber-700 border-amber-200",
+    badgeSoon: "bg-amber-100 text-amber-700 border-amber-200",
+    border: "border-amber-300/30 hover:border-amber-300/50",
+    dot: "bg-amber-600",
+    btnClass: "bg-amber-600 hover:bg-amber-700 text-white",
+    audience: "bg-amber-50 text-amber-700",
   },
 };
 
@@ -49,6 +61,7 @@ export function ProductCard({
   icon: Icon,
   accentColor,
   badge,
+  comingSoon = false,
   primaryCta,
   secondaryCta,
   index = 0,
@@ -62,18 +75,21 @@ export function ProductCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
       className={cn(
-        "relative bg-white rounded-3xl border-2 p-8 flex flex-col transition-all duration-300 hover:shadow-xl",
-        c.border
+        "relative bg-white rounded-3xl border-2 p-8 flex flex-col transition-all duration-300",
+        c.border,
+        comingSoon ? "opacity-80" : "hover:shadow-xl"
       )}
     >
-      {badge && (
+      {/* Badge */}
+      {(badge || comingSoon) && (
         <span
           className={cn(
-            "absolute top-6 right-6 text-xs font-semibold px-2.5 py-1 rounded-full border",
-            c.badge
+            "absolute top-6 right-6 text-xs font-semibold px-2.5 py-1 rounded-full border flex items-center gap-1",
+            comingSoon ? c.badgeSoon : c.badge
           )}
         >
-          {badge}
+          {comingSoon && <Clock className="h-3 w-3" />}
+          {comingSoon ? "Em breve" : badge}
         </span>
       )}
 
@@ -103,30 +119,39 @@ export function ProductCard({
       </ul>
 
       <div className="space-y-3 mt-auto">
-        <Button
-          render={
-            <Link
-              href={primaryCta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => events.clickProductCard(name)}
-            />
-          }
-          className={cn("w-full rounded-xl h-11 font-semibold", c.btnClass)}
-        >
-          {primaryCta.label}
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-        {secondaryCta && (
-          <Link
-            href={secondaryCta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => events.clickTryFree(name)}
-            className="flex items-center justify-center w-full h-11 rounded-xl border-2 border-border text-brand-graphite text-sm font-semibold hover:bg-brand-cream transition-colors"
-          >
-            {secondaryCta.label}
-          </Link>
+        {comingSoon ? (
+          <div className="w-full h-11 rounded-xl bg-brand-cream border-2 border-dashed border-border flex items-center justify-center gap-2 text-sm font-semibold text-brand-gray">
+            <Clock className="h-4 w-4" />
+            Em desenvolvimento
+          </div>
+        ) : (
+          <>
+            <Button
+              render={
+                <Link
+                  href={primaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => events.clickProductCard(name)}
+                />
+              }
+              className={cn("w-full rounded-xl h-11 font-semibold", c.btnClass)}
+            >
+              {primaryCta.label}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            {secondaryCta && (
+              <Link
+                href={secondaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => events.clickTryFree(name)}
+                className="flex items-center justify-center w-full h-11 rounded-xl border-2 border-border text-brand-graphite text-sm font-semibold hover:bg-brand-cream transition-colors"
+              >
+                {secondaryCta.label}
+              </Link>
+            )}
+          </>
         )}
       </div>
     </motion.div>

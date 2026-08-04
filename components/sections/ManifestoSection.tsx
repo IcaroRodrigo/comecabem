@@ -2,24 +2,30 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Heart, Users, Zap } from "lucide-react";
+import { Clock, PackageCheck, TrendingUp } from "lucide-react";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
 
-const values = [
+const results = [
   {
-    icon: Zap,
-    title: "Fácil de usar",
-    description: "Sem treinamento complicado. Se você usa o celular, usa a Começa Bem.",
+    icon: Clock,
+    stat: "5 minutos",
+    title: "para começar a usar",
+    description: "Sem instalação, sem treinamento. Abre no celular e já funciona.",
+    highlight: "bg-orange-50 text-brand-orange",
   },
   {
-    icon: Users,
-    title: "Feito para pequenos negócios",
-    description: "Não é um ERP empresarial reduzido. É uma solução pensada do zero para você.",
+    icon: PackageCheck,
+    stat: "100% dos produtos",
+    title: "organizados automaticamente",
+    description: "Estoque, validade e categorias sempre atualizados em tempo real.",
+    highlight: "bg-green-50 text-green-700",
   },
   {
-    icon: Heart,
-    title: "Atendimento próximo",
-    description: "Suporte humano, em português, sem robô e sem fila de espera.",
+    icon: TrendingUp,
+    stat: "1 painel só",
+    title: "para ver tudo do negócio",
+    description: "Vendas, caixa, estoque e clientes num lugar. Sem planilha, sem caderno.",
+    highlight: "bg-brand-petrol-light text-brand-petrol",
   },
 ];
 
@@ -105,24 +111,27 @@ export function ManifestoSection() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-petrol">
-            Tecnologia simples de verdade
+            Resultados reais para o seu negócio
           </h2>
         </motion.div>
         <div className="grid sm:grid-cols-3 gap-8">
-          {values.map((v, i) => (
+          {results.map((r, i) => (
             <motion.div
-              key={v.title}
+              key={r.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="bg-white rounded-2xl p-7 text-center shadow-sm border border-border"
+              className="bg-white rounded-2xl p-7 shadow-sm border border-border"
             >
-              <span className="inline-flex p-3 rounded-2xl bg-orange-50 text-brand-orange mb-4">
-                <v.icon className="h-6 w-6" />
+              <span className={`inline-flex p-3 rounded-2xl mb-4 ${r.highlight}`}>
+                <r.icon className="h-6 w-6" />
               </span>
-              <h3 className="text-base font-bold text-brand-graphite mb-2">{v.title}</h3>
-              <p className="text-sm text-brand-gray leading-relaxed">{v.description}</p>
+              <p className="text-2xl font-extrabold text-brand-graphite leading-tight">
+                {r.stat}
+              </p>
+              <p className="text-sm font-semibold text-brand-petrol mb-2">{r.title}</p>
+              <p className="text-sm text-brand-gray leading-relaxed">{r.description}</p>
             </motion.div>
           ))}
         </div>

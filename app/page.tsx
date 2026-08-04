@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BrandStrip } from "@/components/sections/BrandStrip";
 import { ProductsSection } from "@/components/sections/ProductsSection";
+import { ForWhomSection } from "@/components/sections/ForWhomSection";
 import { ManifestoSection } from "@/components/sections/ManifestoSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -16,6 +17,7 @@ export default function Home() {
         <HeroSection />
         <BrandStrip />
         <ProductsSection />
+        <ForWhomSection />
         <HowItWorksSection />
         <ManifestoSection />
         <TestimonialsSection />

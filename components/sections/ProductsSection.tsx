@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCart, Wheat } from "lucide-react";
+import { ShoppingCart, Wheat, Sprout } from "lucide-react";
 import { motion } from "motion/react";
 import { ProductCard } from "@/components/common/ProductCard";
 import { SectionWrapper } from "@/components/common/SectionWrapper";
@@ -46,6 +46,25 @@ const products = [
     badge: "Disponível agora",
     primaryCta: { label: "Conhecer o Empório", href: URLS.emporio },
   },
+  {
+    name: "Começa Bem Agro",
+    tagline: "Gestão para o campo e produtor rural",
+    description:
+      "Controle de safras, insumos, colheitas e vendas para pequenos produtores rurais e agricultores familiares.",
+    audience: "Produtores rurais · Agricultores · Cooperativas",
+    features: [
+      "Controle de safras e colheitas",
+      "Gestão de insumos",
+      "Registro de vendas rurais",
+      "Alertas climáticos",
+      "Relatórios por talhão",
+      "Funciona offline",
+    ],
+    icon: Sprout,
+    accentColor: "earth" as const,
+    comingSoon: true,
+    primaryCta: { label: "Conhecer o Agro", href: "#" },
+  },
 ];
 
 export function ProductsSection() {
@@ -70,7 +89,7 @@ export function ProductsSection() {
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product, i) => (
           <ProductCard key={product.name} {...product} index={i} />
         ))}

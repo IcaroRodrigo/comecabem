@@ -113,79 +113,92 @@ const MockScreen = () => (
 
 export function HeroSection() {
   return (
-    <SectionWrapper
-      className="py-20 lg:py-28 overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #FFFDF8 0%, #FFF4E6 60%, #E8F4F7 100%)",
-      }}
-    >
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
-            Feito para pequenos negócios brasileiros
-          </span>
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-brand-cream">
+      {/* Decorative background */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        {/* Subtle dot grid */}
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage: "radial-gradient(#0F4C5C 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        {/* Blurred color blobs */}
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-orange-200 opacity-20 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full bg-brand-petrol opacity-10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-brand-green opacity-5 blur-3xl" />
+      </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-brand-petrol leading-tight mb-6">
-            Tecnologia para quem quer{" "}
-            <span className="text-brand-orange">começar bem</span> e crescer melhor.
-          </h1>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
+              Feito para pequenos negócios brasileiros
+            </span>
 
-          <p className="text-lg text-brand-gray leading-relaxed mb-8 max-w-lg">
-            Soluções simples para organizar vendas, estoque, clientes e processos do
-            seu negócio — sem complicação, sem palavras difíceis.
-          </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-brand-petrol leading-tight mb-6">
+              Tecnologia para quem quer{" "}
+              <span className="text-brand-orange">começar bem</span> e crescer melhor.
+            </h1>
 
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <Button
-              render={
-                <Link href="#produtos" onClick={() => events.clickKnowSolutions()} />
-              }
-              size="lg"
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-7 shadow-lg shadow-orange-200"
-            >
-              Conheça nossas soluções
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <p className="text-lg text-brand-gray leading-relaxed mb-8 max-w-lg">
+              Soluções simples para organizar vendas, estoque, clientes e processos do
+              seu negócio — sem complicação, sem palavras difíceis.
+            </p>
 
-            <Button
-              render={
-                <Link
-                  href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => events.clickWhatsapp()}
-                />
-              }
-              size="lg"
-              variant="outline"
-              className="border-brand-petrol text-brand-petrol hover:bg-brand-petrol-light font-semibold rounded-xl px-7"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Fale pelo WhatsApp
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <Button
+                render={
+                  <Link href="#produtos" onClick={() => events.clickKnowSolutions()} />
+                }
+                size="lg"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-xl px-7 shadow-lg shadow-orange-200"
+              >
+                Conheça nossas soluções
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+
+              <Button
+                render={
+                  <Link
+                    href={`${URLS.whatsapp}?text=${WHATSAPP_MESSAGE}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => events.clickWhatsapp()}
+                  />
+                }
+                size="lg"
+                variant="outline"
+                className="border-brand-petrol text-brand-petrol hover:bg-brand-petrol-light font-semibold rounded-xl px-7"
+              >
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Fale pelo WhatsApp
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 text-sm text-brand-gray">
+              {["Sem cartão de crédito", "Grátis para testar", "Suporte em português"].map(
+                (item) => (
+                  <span key={item} className="flex items-center gap-1.5">
+                    <Check className="h-3.5 w-3.5 text-brand-green" />
+                    {item}
+                  </span>
+                )
+              )}
+            </div>
+          </motion.div>
+
+          <div className="relative flex justify-center lg:justify-end py-10 px-6">
+            <MockScreen />
           </div>
-
-          <div className="flex flex-wrap items-center gap-4 text-sm text-brand-gray">
-            {["Sem cartão de crédito", "Grátis para testar", "Suporte em português"].map(
-              (item) => (
-                <span key={item} className="flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-brand-green" />
-                  {item}
-                </span>
-              )
-            )}
-          </div>
-        </motion.div>
-
-        <div className="relative flex justify-center lg:justify-end py-10 px-6">
-          <MockScreen />
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
