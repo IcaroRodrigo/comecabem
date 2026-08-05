@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { products } from "@/config/products";
+"use client";
+
 import { sectionClass } from "./SectionLayout";
 
 export function CtaSection() {
-  const gestao = products.find((p) => p.slug === "gestao");
-
   return (
     <section id="contato" className="scroll-mt-24 py-8">
       <div className={sectionClass}>
@@ -22,14 +20,12 @@ export function CtaSection() {
                 Conheça as soluções e descubra como organizar, gerir e crescer com mais tranquilidade.
               </p>
             </div>
-            <Link
-              href={gestao?.href ?? "#solucoes"}
-              target={gestao?.href ? "_blank" : undefined}
-              rel={gestao?.href ? "noopener noreferrer" : undefined}
+            <button
+              onClick={() => document.getElementById("solucoes")?.scrollIntoView({ behavior: "smooth" })}
               className="flex w-full items-center justify-center rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-brand-orange hover:bg-orange-50 transition-colors sm:w-auto sm:whitespace-nowrap"
             >
               Começar agora
-            </Link>
+            </button>
           </div>
         </div>
       </div>
