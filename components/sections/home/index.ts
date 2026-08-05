@@ -1,0 +1,11 @@
+export { AboutSection } from "./AboutSection";
+export { BrandStrip } from "./BrandStrip";
+export { ContentSection } from "./ContentSection";
+export { CtaSection } from "./CtaSection";
+export { DifferencesSection } from "./DifferencesSection";
+export { ForWhomSection } from "./ForWhomSection";
+export { HeroSection } from "./HeroSection";
+export { HowWeHelpSection } from "./HowWeHelpSection";
+export { ProductsSection } from "./ProductsSection";
+export { TestimonialsSection } from "./TestimonialsSection";
+export { TransformationSection } from "./TransformationSection";
