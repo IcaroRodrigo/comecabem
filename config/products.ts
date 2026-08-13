@@ -1,7 +1,7 @@
 export type ProductStatus = "available" | "development";
 
 export type Product = {
-  slug: "gestao" | "emporio" | "agro";
+  slug: "gestao" | "emporio" | "festas" | "agro";
   name: string;
   shortName: string;
   description: string;
@@ -40,6 +40,17 @@ export const products: readonly Product[] = [
     status: "available",
     href: "https://emporio.comecabem.com.br/",
     signupHref: "https://emporio.comecabem.com.br/cadastro",
+  },
+  {
+    slug: "festas",
+    name: "Começa Bem Festas",
+    shortName: "Festas",
+    description: "Gestão completa para lojas de artigos para festas. Controle de estoque, vendas e pedidos de forma simples e rápida.",
+    audience: ["Lojas de festas", "Decoradores", "Buffets"],
+    features: ["Controle de estoque", "Registro de vendas", "Gestão de pedidos", "Cadastro de clientes", "Relatórios simples", "Funciona no celular"],
+    status: "available",
+    href: "https://festas.comecabem.com.br/",
+    signupHref: "https://festas.comecabem.com.br/cadastro",
   },
   {
     slug: "agro",

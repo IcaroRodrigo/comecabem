@@ -69,7 +69,7 @@ export function Header() {
               </div>
             )}
           </div>
-          {navigation.map((item) => <Link key={item.href} href={homeHref(item.href)} className="flex min-h-11 items-center rounded-lg px-3 font-medium text-brand-petrol hover:bg-brand-beige">{item.label}</Link>)}
+          {navigation.map((item) => <Link key={item.href} href={homeHref(item.href)} {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="flex min-h-11 items-center rounded-lg px-3 font-medium text-brand-petrol hover:bg-brand-beige">{item.label}</Link>)}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
           <Link href="https://www.instagram.com/comecabem/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @comecabem" className="flex size-10 items-center justify-center rounded-lg text-brand-petrol hover:bg-brand-beige transition-colors">
@@ -98,7 +98,7 @@ export function Header() {
               <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-gray">Soluções</p>
               {products.map((product) => product.href ? <SheetClose key={product.slug} render={<Link href={product.href} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between rounded-xl px-3 font-semibold text-brand-petrol hover:bg-brand-cream" />}><span>{product.name}</span><span className="text-xs font-normal text-brand-gray">Abrir</span></SheetClose> : <div key={product.slug} className="flex min-h-12 items-center justify-between px-3 font-semibold text-brand-petrol"><span>{product.name}</span><span className="rounded-full bg-green-50 px-2 py-1 text-xs text-green-700">Em desenvolvimento</span></div>)}
               <div className="my-3 border-t" />
-              {navigation.map((item) => <SheetClose key={item.href} render={<Link href={homeHref(item.href)} className="flex min-h-12 items-center rounded-xl px-3 font-medium text-brand-petrol hover:bg-brand-cream" />}>{item.label}</SheetClose>)}
+              {navigation.map((item) => <SheetClose key={item.href} render={<Link href={homeHref(item.href)} {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="flex min-h-12 items-center rounded-xl px-3 font-medium text-brand-petrol hover:bg-brand-cream" />}>{item.label}</SheetClose>)}
               <button onClick={() => { scrollToSection("solucoes"); setMobileOpen(false); }} className="mt-4 flex min-h-12 w-full items-center justify-center rounded-xl bg-brand-orange px-5 font-semibold text-white">Começar agora</button>
             </nav>
           </SheetContent>
