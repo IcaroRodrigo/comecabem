@@ -1,5 +1,7 @@
 export type ProductStatus = "available" | "development";
 
+export type FeatureGroup = { group: string; items: readonly string[] };
+
 export type Product = {
   slug: "gestao" | "emporio" | "festas" | "agro";
   name: string;
@@ -7,6 +9,7 @@ export type Product = {
   description: string;
   audience: readonly string[];
   features: readonly string[];
+  featureGroups?: readonly FeatureGroup[];
   price?: string;
   trialDays?: number;
   status: ProductStatus;
@@ -47,7 +50,69 @@ export const products: readonly Product[] = [
     shortName: "Festas",
     description: "Gestão completa para lojas de artigos para festas. Controle de estoque, vendas e pedidos de forma simples e rápida.",
     audience: ["Lojas de festas", "Decoradores", "Buffets"],
-    features: ["Controle de estoque", "Registro de vendas", "Gestão de pedidos", "Cadastro de clientes", "Relatórios simples", "Funciona no celular"],
+    features: [],
+    featureGroups: [
+      {
+        group: "Gestão de Clientes",
+        items: [
+          "Cadastro completo com nome, telefone, WhatsApp, endereço e observações",
+          "Histórico de festas por cliente",
+        ],
+      },
+      {
+        group: "Reservas e Agenda",
+        items: [
+          "Agendamento de festas com data, horário e endereço",
+          "Visualização em calendário (diário, semanal, mensal)",
+          "Controle de montagem e desmontagem",
+          "Modalidade Pegue e Monte (retirada e devolução pelo cliente)",
+          "Alertas de conflito de agenda",
+        ],
+      },
+      {
+        group: "Temas e Itens",
+        items: [
+          "Cadastro de temas decorativos com composição padrão",
+          "Controle de estoque de itens (painéis, cilindros, mesas, personagens etc.)",
+          "Itens compartilhados entre temas — o sistema calcula disponibilidade real",
+          "Motor de disponibilidade: impede reservas conflitantes automaticamente",
+        ],
+      },
+      {
+        group: "Financeiro",
+        items: [
+          "Controle de pagamentos por reserva (sinal, parcelas, saldo)",
+          "Registro de despesas por festa e despesas gerais",
+          "Relatório de faturamento e receitas",
+          "Alertas de festas com pagamento pendente",
+        ],
+      },
+      {
+        group: "Documentos",
+        items: [
+          "Geração de orçamento em PDF",
+          "Geração de contrato em PDF",
+          "Geração de recibo em PDF",
+          "Envio facilitado pelo WhatsApp",
+        ],
+      },
+      {
+        group: "Equipe",
+        items: [
+          "Perfil de administrador da decoradora",
+          "Perfil de montador (acesso operacional limitado)",
+          "Convite de usuários",
+        ],
+      },
+      {
+        group: "Configurações da Decoradora",
+        items: [
+          "Logo e identidade visual própria",
+          "Dados comerciais (CNPJ, endereço, PIX)",
+          "Personalização de textos de documentos",
+        ],
+      },
+    ],
     status: "available",
     href: "https://festas.comecabem.com.br/",
     signupHref: "https://festas.comecabem.com.br/cadastro",
