@@ -6,6 +6,7 @@ import { SectionTitle, sectionClass } from "./SectionLayout";
 export function ProductsSection() {
   const gestao = products.find((p) => p.slug === "gestao");
   const emporio = products.find((p) => p.slug === "emporio");
+  const festas = products.find((p) => p.slug === "festas");
 
   return (
     <section id="solucoes" className="scroll-mt-24 py-16">
@@ -16,7 +17,7 @@ export function ProductsSection() {
           description="Comece com o que precisa hoje. Evolua no seu ritmo."
         />
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+        <div className="mt-10 grid gap-5 lg:grid-cols-2 lg:grid-rows-[auto_auto]">
           {/* Gestão card */}
           {gestao && (
             <article className="relative overflow-hidden rounded-[18px] border border-[#eee6de] bg-white min-h-[420px] grid grid-cols-1 lg:grid-cols-[58%_42%]">
@@ -90,6 +91,44 @@ export function ProductsSection() {
                   height={600}
                   sizes="300px"
                   className="w-full rounded-tl-xl object-cover object-left-top shadow-sm"
+                />
+              </div>
+            </article>
+          )}
+          {/* Festas card */}
+          {festas && (
+            <article className="relative overflow-hidden rounded-[18px] border border-[#eee6de] bg-white min-h-[420px] grid grid-cols-1 lg:col-span-2 lg:grid-cols-[1fr_1fr]">
+              <div className="absolute bottom-[-110px] right-[-100px] size-[260px] rounded-full bg-[#f3eeff]" aria-hidden="true" />
+              <div className="relative z-10 flex flex-col p-7 sm:p-8">
+                <p className="text-[11px] font-extrabold uppercase tracking-widest text-purple-600">Para quem organiza festas e eventos</p>
+                <h3 className="mt-1 text-2xl font-extrabold text-brand-petrol">{festas.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-brand-gray">{festas.description}</p>
+                <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 sm:block sm:space-y-1">
+                  {festas.features.map((f) => (
+                    <li key={f} className="text-sm text-brand-petrol before:mr-2 before:font-bold before:text-green-600 before:content-['✓']">
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={festas.href!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 self-start text-sm font-extrabold text-purple-600 hover:underline lg:mt-auto lg:pt-6"
+                >
+                  Conhecer a solução →
+                </Link>
+              </div>
+
+              {/* Screenshot — só no desktop */}
+              <div className="relative z-10 hidden overflow-hidden pt-[3.5rem] lg:block">
+                <Image
+                  src="/images/sistema-festas.png"
+                  alt="Interface do sistema Começa Bem Festas"
+                  width={860}
+                  height={600}
+                  sizes="500px"
+                  className="w-full rounded-tl-xl border border-gray-200 object-cover object-left-top shadow-sm"
                 />
               </div>
             </article>
